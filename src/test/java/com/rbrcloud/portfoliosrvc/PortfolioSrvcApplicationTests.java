@@ -1,20 +1,19 @@
 package com.rbrcloud.portfoliosrvc;
 
-import com.rbrcloud.portfoliosrvc.service.PortfolioService;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @SpringBootTest
 @ActiveProfiles("test")
 class PortfolioSrvcApplicationTests {
 
-	@InjectMocks
-	private PortfolioService portfolioService;
+    @MockitoBean
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
-	@Test
-	void contextLoads() {
-	}
-
+    @Test
+    void contextLoads() {
+    }
 }

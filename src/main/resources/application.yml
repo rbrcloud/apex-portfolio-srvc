@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/apex
-    username: user
+    url: jdbc:postgresql://postgres:5432/apex_tracker
+    username: postgres
     password: P@ssw0rd1
     driver-class-name: org.postgresql.Driver
 
@@ -9,13 +9,16 @@ spring:
     # JPA specific properties (how spring interacts with database)
     hibernate:
       ddl-auto: update  # Automatically create/update tables based on entities
-    show-sql: true      # Show SQL statements in the console. Set to false in production.
 
     # Hibernate specific implementation properties (direct to hibernate)
     properties:
       hibernate:
         default_schema: portfolio
         dialect: org.hibernate.dialect.PostgreSQLDialect  # Use PostgreSQL dialect
+      format_sql: true
+
+    # Show SQL statements in the console. Set to false in production.
+    show-sql: true
 
   kafka:
     bootstrap-servers: kafka:9092

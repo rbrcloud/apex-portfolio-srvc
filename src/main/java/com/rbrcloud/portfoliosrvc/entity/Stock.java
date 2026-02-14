@@ -27,5 +27,5 @@ public class Stock {
     private Integer quantity;
 
     @Column(name = "purhcase_price", nullable = false, precision = 10, scale = 2)
-    private BigDecimal purchasePrice;;
+    private BigDecimal purchasePrice;
 }

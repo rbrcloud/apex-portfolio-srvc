@@ -2,8 +2,6 @@ package com.rbrcloud.portfoliosrvc.controller;
 
 import com.rbrcloud.portfoliosrvc.entity.Stock;
 import com.rbrcloud.portfoliosrvc.service.PortfolioService;
-import com.rbrcloud.shared.dto.StockPriceDTO;
-import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
