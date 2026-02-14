@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class PortfolioService {
 
@@ -20,5 +22,9 @@ public class PortfolioService {
     @Transactional
     public Portfolio createPortfolio(@Nonnull Portfolio portfolio) {
         return portfolioRepository.save(portfolio);
+    }
+
+    public List<Portfolio> getPortfoliosByUserId(@Nonnull Long userId) {
+        return portfolioRepository.findByUserId(userId);
     }
 }

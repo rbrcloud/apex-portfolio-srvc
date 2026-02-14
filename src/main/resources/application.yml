@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/apex_tracker
+    url: jdbc:postgresql://localhost:5432/apex_tracker?currentSchema=portfolio
     username: postgres
     password: P@ssw0rd1
     driver-class-name: org.postgresql.Driver
@@ -8,7 +8,8 @@ spring:
   jpa:
     # JPA specific properties (how spring interacts with database)
     hibernate:
-      ddl-auto: update  # Automatically create/update tables based on entities
+      ddl-auto: validate  # Validate that entities match the DB
+      # ddl-auto: update  # Automatically create/update tables based on entities
 
     # Hibernate specific implementation properties (direct to hibernate)
     properties:
