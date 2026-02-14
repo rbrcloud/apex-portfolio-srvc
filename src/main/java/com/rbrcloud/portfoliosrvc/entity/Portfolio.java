@@ -23,4 +23,7 @@ public class Portfolio {
 
     @Column(nullable = false, length = 50)
     private String name;
+
+    @Column(name = "default", nullable = false)
+    private Boolean isDefault;
 }
