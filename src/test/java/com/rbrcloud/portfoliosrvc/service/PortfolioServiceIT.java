@@ -1,7 +1,6 @@
 package com.rbrcloud.portfoliosrvc.service;
 
 import com.rbrcloud.portfoliosrvc.entity.Portfolio;
-import com.rbrcloud.portfoliosrvc.entity.Stock;
 import com.rbrcloud.portfoliosrvc.repository.PortfolioRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
