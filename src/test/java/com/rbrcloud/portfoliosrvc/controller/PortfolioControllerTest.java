@@ -1,6 +1,7 @@
 package com.rbrcloud.portfoliosrvc.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rbrcloud.portfoliosrvc.entity.Portfolio;
 import com.rbrcloud.portfoliosrvc.entity.Stock;
 import com.rbrcloud.portfoliosrvc.service.PortfolioService;
 import org.junit.jupiter.api.Test;
@@ -34,19 +35,18 @@ public class PortfolioControllerTest {
 
     @Test
     public void validRequest() throws Exception {
-        Stock stock = new Stock(null, "JPM", 25, new BigDecimal("322.50"));
+        Portfolio portfolio = new Portfolio(null, 3001L, "AAPL");
 
-        Stock savedStock = new Stock(1L, "JPM", 25, new BigDecimal("322.50"));
-        when(portfolioService.addStockToPortfolio(any(Stock.class))).thenReturn(savedStock);
+        Portfolio savedPortfolio = new Portfolio(1L, 3001L, "AAPL");
+        when(portfolioService.createPortfolio(any(Portfolio.class))).thenReturn(savedPortfolio);
 
         mockMvc.perform(
-                post("/api/v1/portfolios/1/stocks")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(stock))
-                        .with(user("testuser").roles("USER"))
-                        .with(csrf()))
+                        post("/api/v1/portfolios")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(portfolio))
+                                .with(user("testuser").roles("USER"))
+                                .with(csrf()))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.symbol").value("JPM"));
+                .andExpect(jsonPath("$.id").value(1));
     }
 }
