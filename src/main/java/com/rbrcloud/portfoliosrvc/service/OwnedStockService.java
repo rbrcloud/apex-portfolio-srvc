@@ -2,7 +2,6 @@ package com.rbrcloud.portfoliosrvc.service;
 
 import com.rbrcloud.portfoliosrvc.entity.OwnedStock;
 import com.rbrcloud.portfoliosrvc.repository.OwnedStockRepository;
-import com.rbrcloud.shared.constants.KafkaTopics;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,10 +37,10 @@ public class OwnedStockService {
         }
         OwnedStock savedStock = portfolioStockRepository.save(stock);
 
-        // Publish this save event to kafka
-        String message = "Stock added to portfolio: " + savedStock.getTicker();
-        kafkaProducerService.sendMessage(KafkaTopics.PORTFOLIO_UPDATE, message);
-
+//        // Publish this save event to kafka
+//        String message = "Stock added to portfolio: " + savedStock.getTicker();
+//        kafkaProducerService.sendMessage(KafkaTopics.PORTFOLIO_UPDATE, message);
+//
         return savedStock;
     }
 

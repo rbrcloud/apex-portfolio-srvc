@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.rbr.apex</groupId>
+    <groupId>com.rbrcloud.apex</groupId>
     <artifactId>apex-portfolio-srvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -62,11 +62,11 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.rbr.apex</groupId>
-            <artifactId>shared-lib</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.rbr.apex</groupId>-->
+<!--            <artifactId>shared-lib</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
