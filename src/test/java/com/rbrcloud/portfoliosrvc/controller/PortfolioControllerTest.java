@@ -32,9 +32,9 @@ public class PortfolioControllerTest {
 
     @Test
     public void validRequest() throws Exception {
-        Portfolio portfolio = new Portfolio(null, 3001L, "AAPL");
+        Portfolio portfolio = new Portfolio(null, 1L, "My First Portfolio", true);
 
-        Portfolio savedPortfolio = new Portfolio(1L, 3001L, "AAPL");
+        Portfolio savedPortfolio = new Portfolio(1L, 1L, "My First Portfolio", true);
         when(portfolioService.createPortfolio(any(Portfolio.class))).thenReturn(savedPortfolio);
 
         mockMvc.perform(

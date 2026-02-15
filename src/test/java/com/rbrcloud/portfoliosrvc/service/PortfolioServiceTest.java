@@ -28,7 +28,7 @@ public class PortfolioServiceTest {
     @Test
     public void addPortfolio() {
         // Arrange
-        Portfolio portfolio = new Portfolio(null, 1001L, "Alex");
+        Portfolio portfolio = new Portfolio(null, 2L, "General Portfolio", true);
         when(portfolioRepository.save(any(Portfolio.class))).thenReturn(portfolio);
 
         // Act

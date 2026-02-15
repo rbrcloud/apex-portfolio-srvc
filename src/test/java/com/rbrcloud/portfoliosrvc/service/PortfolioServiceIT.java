@@ -37,7 +37,7 @@ public class PortfolioServiceIT {
 
     @Test
     public void addStockToPortfolio() {
-        Portfolio portfolio = Portfolio.builder().userId(1001L).name("AAPL").build();
+        Portfolio portfolio = Portfolio.builder().userId(1001L).name("AAPL").isDefault(true).build();
         Portfolio savedPortfolio = portfolioService.createPortfolio(portfolio);
 
         assertNotNull(savedPortfolio.getId());
