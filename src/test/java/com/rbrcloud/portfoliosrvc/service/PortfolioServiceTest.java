@@ -21,9 +21,6 @@ public class PortfolioServiceTest {
     @Mock
     private PortfolioRepository portfolioRepository;
 
-    @Mock
-    private KafkaProducerService kafkaProducerService;
-
     @InjectMocks
     private PortfolioService portfolioService;
 
