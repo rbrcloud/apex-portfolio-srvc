@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "portfolio")
+@Table(name = "portfolio", schema = "portfolio")
 public class Portfolio {
 
     @Id
@@ -25,5 +25,5 @@ public class Portfolio {
     private String name;
 
     @Column(name = "is_default", nullable = false)
-    private Boolean isDefault;
+    private Boolean isDefault = false;
 }

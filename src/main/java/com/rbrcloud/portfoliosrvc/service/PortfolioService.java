@@ -4,6 +4,7 @@ import com.rbrcloud.portfoliosrvc.entity.Portfolio;
 import com.rbrcloud.portfoliosrvc.repository.PortfolioRepository;
 import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,16 @@ public class PortfolioService {
 
     @Transactional
     public Portfolio createPortfolio(@Nonnull Portfolio portfolio) {
+        // Make this the default portfolio if it's the first one for the user
+        List<Portfolio> existingPortfolios = portfolioRepository.findByUserId(portfolio.getUserId());
+        if (existingPortfolios.isEmpty()) {
+            portfolio.setIsDefault(true);
+        }
         return portfolioRepository.save(portfolio);
+    }
+
+    public List<Portfolio> getAllPortfolios() {
+        return portfolioRepository.findAll();
     }
 
     public List<Portfolio> getPortfoliosByUserId(@Nonnull Long userId) {

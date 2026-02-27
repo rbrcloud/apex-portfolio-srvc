@@ -32,8 +32,14 @@ public class PortfolioController {
         return new ResponseEntity<>(createdPortfolio, HttpStatus.CREATED);
     }
 
+    @GetMapping("")
+    public ResponseEntity<List<Portfolio>> getPortfolios() {
+        List<Portfolio> portfolios = portfolioService.getAllPortfolios();
+        return ResponseEntity.ok(portfolios);
+    }
+
     @GetMapping("/{user_id}")
-    public ResponseEntity<List<Portfolio>> getPortfolios(@PathVariable("user_id") Long userId) {
+    public ResponseEntity<List<Portfolio>> getPortfoliosByUserId(@PathVariable("user_id") Long userId) {
         List<Portfolio> portfolios = portfolioService.getPortfoliosByUserId(userId);
         return ResponseEntity.ok(portfolios);
     }
