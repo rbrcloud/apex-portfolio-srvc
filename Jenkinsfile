@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        jdk 'sdkman-java'
+    }
+
     environment {
         SPRINT_PROFILES_ACTIVE = "test"
     }
