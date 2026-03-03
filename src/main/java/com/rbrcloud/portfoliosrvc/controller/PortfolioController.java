@@ -2,6 +2,8 @@ package com.rbrcloud.portfoliosrvc.controller;
 
 import com.rbrcloud.portfoliosrvc.entity.Portfolio;
 import com.rbrcloud.portfoliosrvc.service.PortfolioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/portfolios")
+@Tag(name="Portfolio Management", description="Endpoints for managing user portfolios")
 public class PortfolioController {
 
     private final PortfolioService portfolioService;
@@ -27,18 +30,21 @@ public class PortfolioController {
 
     // Create a portfolio
     @PostMapping
+    @Operation(summary = "Create a new portfolio", description = "Create a new portfolio for a user")
     public ResponseEntity<Portfolio> createPortfolio(@RequestBody Portfolio portfolio) {
         Portfolio createdPortfolio = portfolioService.createPortfolio(portfolio);
         return new ResponseEntity<>(createdPortfolio, HttpStatus.CREATED);
     }
 
-    @GetMapping("")
+    @GetMapping()
+    @Operation(summary = "Get all portfolios", description = "Retrieve a list of all portfolios")
     public ResponseEntity<List<Portfolio>> getPortfolios() {
         List<Portfolio> portfolios = portfolioService.getAllPortfolios();
         return ResponseEntity.ok(portfolios);
     }
 
     @GetMapping("/{user_id}")
+    @Operation(summary = "Get portfolios by user ID", description = "Retrieve a list of portfolios for a specific user")
     public ResponseEntity<List<Portfolio>> getPortfoliosByUserId(@PathVariable("user_id") Long userId) {
         List<Portfolio> portfolios = portfolioService.getPortfoliosByUserId(userId);
         return ResponseEntity.ok(portfolios);
