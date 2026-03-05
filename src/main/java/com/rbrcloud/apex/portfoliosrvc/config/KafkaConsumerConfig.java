@@ -1,4 +1,4 @@
-package com.rbrcloud.portfoliosrvc.config;
+package com.rbrcloud.apex.portfoliosrvc.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

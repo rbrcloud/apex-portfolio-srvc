@@ -1,7 +1,7 @@
-package com.rbrcloud.portfoliosrvc.controller;
+package com.rbrcloud.apex.portfoliosrvc.controller;
 
-import com.rbrcloud.portfoliosrvc.entity.Portfolio;
-import com.rbrcloud.portfoliosrvc.service.PortfolioService;
+import com.rbrcloud.apex.portfoliosrvc.entity.Portfolio;
+import com.rbrcloud.apex.portfoliosrvc.service.PortfolioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

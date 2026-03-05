@@ -1,7 +1,7 @@
-package com.rbrcloud.portfoliosrvc.service;
+package com.rbrcloud.apex.portfoliosrvc.service;
 
-import com.rbrcloud.portfoliosrvc.entity.Portfolio;
-import com.rbrcloud.portfoliosrvc.repository.PortfolioRepository;
+import com.rbrcloud.apex.portfoliosrvc.entity.Portfolio;
+import com.rbrcloud.apex.portfoliosrvc.repository.PortfolioRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

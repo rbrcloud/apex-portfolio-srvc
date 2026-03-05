@@ -1,4 +1,4 @@
-package com.rbrcloud.portfoliosrvc.entity;
+package com.rbrcloud.apex.portfoliosrvc.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

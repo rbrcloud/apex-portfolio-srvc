@@ -1,8 +1,8 @@
-package com.rbrcloud.portfoliosrvc.controller;
+package com.rbrcloud.apex.portfoliosrvc.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rbrcloud.portfoliosrvc.entity.Portfolio;
-import com.rbrcloud.portfoliosrvc.service.PortfolioService;
+import com.rbrcloud.apex.portfoliosrvc.entity.Portfolio;
+import com.rbrcloud.apex.portfoliosrvc.service.PortfolioService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

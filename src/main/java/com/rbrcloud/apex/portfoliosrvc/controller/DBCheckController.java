@@ -1,4 +1,4 @@
-package com.rbrcloud.portfoliosrvc.controller;
+package com.rbrcloud.apex.portfoliosrvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

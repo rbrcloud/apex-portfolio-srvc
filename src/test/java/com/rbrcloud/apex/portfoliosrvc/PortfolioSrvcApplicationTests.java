@@ -1,4 +1,4 @@
-package com.rbrcloud.portfoliosrvc;
+package com.rbrcloud.apex.portfoliosrvc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.rbrcloud.portfoliosrvc;
+package com.rbrcloud.apex.portfoliosrvc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
