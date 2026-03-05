@@ -1,7 +1,5 @@
 @Library("apex-shared-library") _
-apexPipeline {
-    serviceName = "apex-portfolio-srvc"
-}
+apexPipeline (serviceName: "apex-portfolio-srvc")
 
 // pipeline {
 //     agent any
