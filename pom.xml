@@ -28,7 +28,7 @@
     <repositories>
         <repository>
             <id>github</id>
-            <url>https://maven.pkg.github.com/rbrcloud/apex-shared-lib</url>
+            <url>https://maven.pkg.github.com/rbrcloud/*</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
