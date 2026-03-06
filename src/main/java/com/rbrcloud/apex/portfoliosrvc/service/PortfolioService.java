@@ -1,10 +1,10 @@
-package com.rbrcloud.portfoliosrvc.service;
+package com.rbrcloud.apex.portfoliosrvc.service;
 
-import com.rbrcloud.orderexecution.dto.OrderExecutedEvent;
-import com.rbrcloud.portfoliosrvc.entity.OwnedStock;
-import com.rbrcloud.portfoliosrvc.entity.Portfolio;
-import com.rbrcloud.portfoliosrvc.repository.OwnedStockRepository;
-import com.rbrcloud.portfoliosrvc.repository.PortfolioRepository;
+import com.rbrcloud.apex.orderexecution.dto.OrderExecutedEvent;
+import com.rbrcloud.apex.portfoliosrvc.entity.OwnedStock;
+import com.rbrcloud.apex.portfoliosrvc.entity.Portfolio;
+import com.rbrcloud.apex.portfoliosrvc.repository.OwnedStockRepository;
+import com.rbrcloud.apex.portfoliosrvc.repository.PortfolioRepository;
 import jakarta.annotation.Nonnull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static com.rbrcloud.ordersrvc.enums.OrderSide.BUY;
+import static com.rbrcloud.apex.ordersrvc.enums.OrderSide.BUY;
 
 @Service
 @Slf4j

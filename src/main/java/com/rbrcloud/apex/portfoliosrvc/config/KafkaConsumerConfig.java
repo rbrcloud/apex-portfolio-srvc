@@ -1,4 +1,4 @@
-package com.rbrcloud.portfoliosrvc.config;
+package com.rbrcloud.apex.portfoliosrvc.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -30,9 +30,9 @@ public class KafkaConsumerConfig {
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
         config.put(JsonDeserializer.TRUSTED_PACKAGES,
-                "com.rbrcloud.orderexecution.dto");
+                "com.rbrcloud.apex.orderexecution.dto");
         config.put(JsonDeserializer.TYPE_MAPPINGS,
-                "orderExecutedEvent:com.rbrcloud.orderexecution.dto.OrderExecutedEvent");
+                "orderExecutedEvent:com.rbrcloud.apex.orderexecution.dto.OrderExecutedEvent");
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), new JsonDeserializer<>());
     }
 

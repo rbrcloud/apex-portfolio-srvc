@@ -1,6 +1,6 @@
-package com.rbrcloud.portfoliosrvc.repository;
+package com.rbrcloud.apex.portfoliosrvc.repository;
 
-import com.rbrcloud.portfoliosrvc.entity.Portfolio;
+import com.rbrcloud.apex.portfoliosrvc.entity.Portfolio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
