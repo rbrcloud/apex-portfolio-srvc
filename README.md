@@ -1,6 +1,6 @@
 # Apex Portfolio Service
 
-Manages user portfolios and CRUD operations for stocks in a portfolio. Consumes order-execution events from Kafka to update owned positions. Built with Spring Boot 3.4 and Java 21.
+Manages user portfolios and CRUD operations for stocks in a portfolio. Consumes order-execution events from Kafka to update owned positions. Built with Spring Boot 3.4 (3.4.2) and Java 21.
 
 ## Tech Stack
 
@@ -9,6 +9,7 @@ Manages user portfolios and CRUD operations for stocks in a portfolio. Consumes 
 ## Prerequisites
 
 - **Java 21+**
+- **GitHub Packages access** (this service depends on `com.rbrcloud.apex:apex-shared-lib`, resolved from GitHub Packages)
 - **PostgreSQL** with schema `portfolio` (schema must exist; Flyway uses `portfolio` with `baseline-on-migrate`)
 - **Kafka** (optional for run; required for consuming `order.executed.event` and updating owned stocks)
 
@@ -26,6 +27,11 @@ Configuration is driven by `application.yml` and can be overridden via environme
 | `DB_PASSWORD` | Database password | — |
 | `KAFKA_BOOTSTRAP_SERVERS` | Kafka broker list | `localhost:9092` |
 
+### Notes on `.env`
+
+- `.env` is loaded automatically at startup via `spring.config.import=optional:file:.env[.properties]`.
+- Do not commit real credentials in `.env`. Prefer a local-only `.env` file (gitignored) or environment variables in your runtime/CI.
+
 ### Application defaults
 
 - **Server port:** `8080`
@@ -33,7 +39,12 @@ Configuration is driven by `application.yml` and can be overridden via environme
 - **HikariCP:** max pool size `5`, connection timeout `30000` ms
 - **JPA:** schema `portfolio`, `ddl-auto: validate`, PostgreSQL dialect
 - **Flyway:** schema `portfolio`, `baseline-on-migrate: true`, `create-schemas: false`
-- **Kafka consumer group:** `execution-group`
+- **Kafka consumer group:** `execution-group` (also referenced from shared `KafkaConstants`)
+
+### OpenAPI / Swagger UI
+
+- **Swagger UI:** `GET /swagger-ui.html`
+- **OpenAPI spec:** `GET /v3/api-docs`
 
 ## Running the Service
 
@@ -43,15 +54,37 @@ Configuration is driven by `application.yml` and can be overridden via environme
 ./mvnw spring-boot:run
 ```
 
-**Docker Compose (with Kafka):**
+If Maven dependency resolution fails for `apex-shared-lib`, configure GitHub Packages auth for Maven (commonly via `~/.m2/settings.xml`) or use the Docker build (below) which passes credentials as build args.
 
-The repo includes a `docker-compose.yml` that runs Kafka and this service (and other Apex services). The portfolio service is exposed on host port **8081** (mapped to container 8080).
+**Docker (build + run):**
+
+This repository’s `Dockerfile` is a multi-stage build that:
+
+- builds using `ghcr.io/rbrcloud/apex-build-base`
+- requires GitHub Packages credentials to download internal dependencies
 
 ```bash
-docker-compose up -d
+docker build \
+  --build-arg GITHUB_USERNAME="$GITHUB_USERNAME" \
+  --build-arg GITHUB_TOKEN="$GITHUB_TOKEN" \
+  -t apex-portfolio-srvc:local .
+
+docker run --rm -p 8080:8080 \
+  -e DB_HOST="$DB_HOST" \
+  -e DB_NAME="$DB_NAME" \
+  -e DB_USERNAME="$DB_USERNAME" \
+  -e DB_PASSWORD="$DB_PASSWORD" \
+  -e KAFKA_BOOTSTRAP_SERVERS="${KAFKA_BOOTSTRAP_SERVERS:-localhost:9092}" \
+  apex-portfolio-srvc:local
 ```
 
-Ensure a `.env` file exists with `DB_HOST`, `DB_NAME`, `DB_USERNAME`, and `DB_PASSWORD`. For Compose, Kafka is set via `SPRING_KAFKA_BOOTSTRAP_SERVERS=apex-kafka:9092`.
+**Docker Compose (with Kafka):**
+
+This repository does not include a `docker-compose.yml`. In the broader Apex workspace, the portfolio service is typically started from the top-level compose (where Kafka runs) and `KAFKA_BOOTSTRAP_SERVERS` is pointed at the compose broker (for example `apex-kafka:9092`).
+
+## CI/CD (Jenkins)
+
+`Jenkinsfile` uses the shared Jenkins library (`apex-shared-library`) and delegates to `apexPipeline(serviceName: "apex-portfolio-srvc")`. Any Jenkins build agent must provide whatever credentials that shared pipeline expects (including access to GHCR and GitHub Packages for internal dependencies).
 
 ## API
 
@@ -151,8 +184,8 @@ Returns database connection info: database name, user, current schema, PostgreSQ
 
 The service consumes **order execution events** to keep owned stocks in sync with executed orders.
 
-- **Topic:** `order.executed.event`
-- **Consumer group:** `execution-group`
+- **Topic:** `order.executed.event` (via shared `com.rbrcloud.apex.common.constants.KafkaConstants.ORDER_EXECUTED_TOPIC`)
+- **Consumer group:** `execution-group` (via shared `com.rbrcloud.apex.common.constants.KafkaConstants.EXECUTION_GROUP`, defaulted in `application.yml`)
 - **Payload type:** `OrderExecutedEvent` (from `com.rbrcloud.orderexecution.dto`)
 
 On each event, the service:

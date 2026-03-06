@@ -36,7 +36,7 @@ public class PortfolioController {
         return new ResponseEntity<>(createdPortfolio, HttpStatus.CREATED);
     }
 
-    @GetMapping()
+    @GetMapping
     @Operation(summary = "Get all portfolios", description = "Retrieve a list of all portfolios")
     public ResponseEntity<List<Portfolio>> getPortfolios() {
         List<Portfolio> portfolios = portfolioService.getAllPortfolios();

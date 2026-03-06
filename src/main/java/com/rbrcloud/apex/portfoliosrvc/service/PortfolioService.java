@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.rbrcloud.apex.common.constants.KafkaConstants.EXECUTION_GROUP;
+import static com.rbrcloud.apex.common.constants.KafkaConstants.ORDER_EXECUTED_TOPIC;
 import static com.rbrcloud.apex.ordersrvc.enums.OrderSide.BUY;
 
 @Service
@@ -23,8 +25,6 @@ public class PortfolioService {
     private final PortfolioRepository portfolioRepository;
 
     private final OwnedStockRepository ownedStockRepository;
-
-    private static final String ORDER_EXECUTED_TOPIC = "order.executed.event";
 
     @Autowired
     public PortfolioService(PortfolioRepository portfolioRepository, OwnedStockRepository ownedStockRepository) {
@@ -51,7 +51,7 @@ public class PortfolioService {
     }
 
     @Transactional
-    @KafkaListener(topics = ORDER_EXECUTED_TOPIC, groupId = "execution-group")
+    @KafkaListener(topics = ORDER_EXECUTED_TOPIC, groupId = EXECUTION_GROUP)
     public void consumeOrderExecutedEvent(OrderExecutedEvent orderExecutedEvent) {
         log.info("Received OrderExecutedEvent: Order Id: {}, Ticker: {}, Price: {}, User Id: {}, Quantity: {}, Order Side: {}",
                 orderExecutedEvent.getOrderId(), orderExecutedEvent.getTicker(), orderExecutedEvent.getPrice(),
