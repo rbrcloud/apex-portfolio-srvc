@@ -47,5 +47,10 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
       group-id: execution-group
+    listener:
+      auto-startup: true  # Start listeners automatically
+      missing-topics-fatal: false  # Don't fail if topics are missing at startup
+    admin:
+      fail-fast: false  # Don't fail if Kafka is not available at startup
 server:
   port: 8080
